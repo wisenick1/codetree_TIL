@@ -17,17 +17,22 @@ public class Main {
     }
 
     private static boolean check(int[] arr, int[] arr2) {
-        int cnt = 0;
-        
-        if(arr.length < arr2.length) return false;
+    if (arr.length < arr2.length) return false;
 
-        for(int i = 0; i < arr.length - arr2.length; i++) {
-            for(int j = 0; j < arr2.length; j++) {
-                if(arr[i + j] == arr2[j]) cnt++;
+    for (int i = 0; i <= arr.length - arr2.length; i++) {
+        boolean same = true;
+
+        for (int j = 0; j < arr2.length; j++) {
+            if (arr[i + j] != arr2[j]) {
+                same = false;
+                break;
             }
-            if(cnt == arr2.length) return true;
-            cnt = 0;
         }
-        return false;
+
+        if (same) return true;
     }
+    
+    return false;
+    }
+
 }

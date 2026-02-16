@@ -14,16 +14,12 @@ public class Main {
     private static int LCM(int n, int[] arr) {
         if(n == -1) return 1;
 
-        int prior = LCM(n - 1, arr);
-        int min = 0;
-        if(prior < arr[n]) min = prior;
-        else min = arr[n];
+        return LCM(n - 1, arr) * arr[n] / GCD(LCM(n - 1, arr), arr[n]);
+    }
 
-        int GCD = 1;
-        for(int i = 1; i <= min; i++) {
-            if(prior % i == 0 && arr[n] %i == 0) GCD = i;
-        }
-        
-        return (prior / GCD) * (arr[n] / GCD) * GCD;
+    private static int GCD(int a, int b) {
+        if(b == 0) return a;
+
+        return GCD(b, a % b);
     }
 }

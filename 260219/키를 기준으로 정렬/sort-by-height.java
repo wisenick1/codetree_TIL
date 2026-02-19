@@ -12,7 +12,12 @@ public class Main {
             arr[i] = new Person(name, height, weight);
         }
 
-        Arrays.sort(arr, (a, b) -> a.height - b.height);
+        Arrays.sort(arr, new Comparator<Person>() {
+            @Override
+            public int compare(Person a, Person b) {
+                return a.height - b.height;
+            }
+        });
 
         for(int i = 0; i < n; i++) {
             System.out.println(arr[i].name + " " + arr[i].height + " " + arr[i].weight);

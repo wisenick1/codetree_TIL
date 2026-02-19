@@ -29,7 +29,7 @@ public class Main {
             int a = Math.abs(diff);
             System.out.println(dow[a]);
         } else {
-            System.out.println(dow[7 - diff]);
+            System.out.println(dow[(7 - diff) % 7]);
         }
     }
 }

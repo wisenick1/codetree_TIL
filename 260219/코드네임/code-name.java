@@ -11,7 +11,7 @@ public class Main {
         }
 
         int idx = 0;
-        int min = Integer.MIN_VALUE;
+        int min = 101;
         for(int i = 0; i < 5; i++) {
             if(arr[i].score < min) {
                 idx = i;

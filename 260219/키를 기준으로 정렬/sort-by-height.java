@@ -12,7 +12,7 @@ public class Main {
             arr[i] = new Person(name, height, weight);
         }
 
-        Arrays.sort(arr);
+        Arrays.sort(arr, (a, b) -> a.height - b.height);
 
         for(int i = 0; i < n; i++) {
             System.out.println(arr[i].name + " " + arr[i].height + " " + arr[i].weight);
@@ -22,7 +22,7 @@ public class Main {
 
 }
 
-class Person implements Comparable<Person> {
+class Person {
     String name;
     int height;
     int weight;
@@ -31,10 +31,5 @@ class Person implements Comparable<Person> {
         this.name = name;
         this.height = height;
         this.weight = weight;
-    }
-
-    @Override
-    public int compareTo(Person p) {
-        return this.height - p.height;
     }
 }

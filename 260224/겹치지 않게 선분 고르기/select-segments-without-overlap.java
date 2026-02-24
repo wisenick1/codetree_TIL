@@ -40,8 +40,9 @@ public class Main {
             }
         }
 
-        if(!isPossible) dfs(cnt + 1);
-        else {
+        dfs(cnt + 1);
+
+        if(isPossible) {
             for(int i = x; i <= y; i++) {
                 visited[i] = true;
             }

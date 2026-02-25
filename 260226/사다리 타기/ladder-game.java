@@ -31,6 +31,8 @@ public class Main {
     static int min = 12;
     static int rowCnt = 0;
     private static void dfs(int cnt) {
+        if(rowCnt >= min) return;
+
         if(cnt == m) {
             if(check()) {
                 min = Math.min(min, rowCnt);

@@ -45,7 +45,11 @@ public class Main {
         }
 
         for(int i = 2; i <= n; i++) {
-            sb.append(dist[i]).append('\n');
+            if(dist[i] == 1000000) {
+                sb.append(-1).append('\n');
+            } else {
+                sb.append(dist[i]).append('\n');
+            }
         }
 
         System.out.println(sb);

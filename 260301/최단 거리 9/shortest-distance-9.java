@@ -60,7 +60,7 @@ public class Main {
 
             if(dist[minIndex] != minDist) continue;
 
-            for(int i = 1; i < graph[minIndex].size(); i++){
+            for(int i = 0; i < graph[minIndex].size(); i++){
                 int targetIndex = graph[minIndex].get(i).index;
                 int targetDist = graph[minIndex].get(i).dist;
 
@@ -71,19 +71,25 @@ public class Main {
                     path[targetIndex] = minIndex;
                 }
             }
+
         }
 
-        System.out.println(dist[b]);
+        StringBuilder sb = new StringBuilder();
+
         List<Integer> list = new ArrayList<>();
         int k = b;
-        list.add(b);
+        list.add(k);
         while(k != a) {
             k = path[k];
             list.add(k);
         }
+
+        sb.append(dist[b]).append('\n');
         for(int i = list.size() - 1; i >= 0; i--) {
-            System.out.print(list.get(i) + " ");
+            sb.append(list.get(i)).append(" ");
         }
+
+        System.out.println(sb);
 
     }
 }

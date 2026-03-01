@@ -41,10 +41,6 @@ public class Main {
             graph[i] = new ArrayList<>();
         }
 
-        for(int i = 1; i <= n; i++) {
-            Collections.sort(graph[i]);
-        }
-
         for (int i = 0; i < m; i++) {
             int x = sc.nextInt();
             int y = sc.nextInt();
@@ -54,6 +50,10 @@ public class Main {
         }
         int a = sc.nextInt();
         int b = sc.nextInt();
+
+        for(int i = 1; i <= n; i++) {
+            Collections.sort(graph[i]);
+        }
         
         for(int i = 1; i <= n; i++) {
             dist[i] = (int)1e9;

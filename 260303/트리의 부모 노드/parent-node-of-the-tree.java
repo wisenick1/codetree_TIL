@@ -22,22 +22,27 @@ public class Main {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
             list[a].add(b);
+            list[b].add(a);
         }
 
         dfs(1);
 
+        StringBuilder sb = new StringBuilder();
         for(int i = 2; i <= n; i++) {
-            System.out.println(parent[i]);
+            sb.append(parent[i]).append('\n');
         }
+        System.out.println(sb);
     }
 
     private static void dfs(int j) {
         visited[j] = true;
 
         for(int k : list[j]) {
-            visited[k] = true;
-            parent[k] = j;
-            dfs(k);
+            if(!visited[k]){
+                visited[k] = true;
+                parent[k] = j;
+                dfs(k);
+            }
         }
     }
 }

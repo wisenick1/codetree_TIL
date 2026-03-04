@@ -37,6 +37,8 @@ public class Main {
     private static void union(int a, int b) {
         int x = find(a);
         int y = find(b);
+        if(x == y) return;
+
         parent[y] = x;
     }
 

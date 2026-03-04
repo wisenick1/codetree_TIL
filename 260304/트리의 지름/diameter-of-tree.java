@@ -1,8 +1,11 @@
 import java.util.*;
+import java.io.*;
+
 public class Main {
     static class Node {
         int index;
         int value;
+
         public Node(int index, int value) {
             this.index = index;
             this.value = value;
@@ -11,56 +14,49 @@ public class Main {
 
     static List<Node>[] list;
     static boolean[] visited;
-    static int max;  //최댓값
-    static int cnt;  //그 때 마다 간선의 합
-    static int idx;  //최댓값의 idx
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+    static int max;
+    static int maxIdx;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
         list = new ArrayList[n + 1];
+        visited = new boolean[n + 1];
+        max = 0;
 
-        for(int i = 0; i <= n; i++) {
+        for (int i = 0; i <= n; i++) {
             list[i] = new ArrayList<>();
         }
 
-        int x = 0;
         for (int i = 0; i < n - 1; i++) {
-            int u = sc.nextInt();
-            int v = sc.nextInt();
-            int w = sc.nextInt();
-            list[u].add(new Node(v, w));
-            list[v].add(new Node(u, w));
-            x = u;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
+            list[a].add(new Node(b, c));
+            list[b].add(new Node(a, c));
         }
-        // Please write your code here.
-        max = 0;
-        cnt = 0;
-        visited = new boolean[n + 1];
-        dfs(x);
+
+        maxIdx = 1;
+        dfs(1, 0);
 
         visited = new boolean[n + 1];
-        cnt = 0;
         max = 0;
-        dfs(idx);
-        
+        dfs(maxIdx, 0);
+
         System.out.println(max);
-
     }
 
-    static void dfs(int i) {
+    private static void dfs(int i, int dist) {
         visited[i] = true;
-        for(Node node: list[i]) {
+        if(dist > max) {
+            max = dist;
+            maxIdx = i;
+        }
+
+        for(Node node : list[i]) {
             if(!visited[node.index]) {
-                visited[node.index] = true;
-                cnt += node.value;
-                if(cnt > max) {
-                    max = cnt;
-                    idx = node.index;
-                }
-                dfs(node.index);
-                cnt -= node.value;
+                dfs(node.index, dist + node.value);
             }
-        }    
-        
+        }
     }
 }

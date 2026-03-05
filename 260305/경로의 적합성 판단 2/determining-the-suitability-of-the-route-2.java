@@ -57,7 +57,7 @@ public class Main {
 
     private static boolean check() {
         for (int i = 0; i < k - 1; i++) {
-            if(parent[path[i]] != parent[path[i + 1]]) return false;
+            if(find(path[i]) != find(path[i + 1])) return false;
         }
         return true;
     }

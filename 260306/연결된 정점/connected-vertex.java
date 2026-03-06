@@ -23,7 +23,7 @@ public class Main {
                 union(a, b);
             } else {
                 int a = Integer.parseInt(st.nextToken());
-                sb.append(size[a]).append('\n');
+                sb.append(size[find(a)]).append('\n');
             }
         }
 

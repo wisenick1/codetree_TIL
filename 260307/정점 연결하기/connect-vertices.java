@@ -5,7 +5,7 @@ public class Main {
     static int n;
     static int[] parent;
     static int[][] edges;
-    static Set<Integer> set = new HashSet<>();
+    static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
@@ -19,10 +19,8 @@ public class Main {
         }
 
         connect();
-        
-        for(int k : set) {
-            System.out.print(k + " ");
-        }
+
+        System.out.println(sb);
     }
 
     private static void init() {
@@ -53,8 +51,17 @@ public class Main {
     }
 
     private static void connect() {
-        for(int i = 1; i <= n; i++) {
-            set.add(find(i));
+        int r1 = find(1);
+        int a = 1;
+        int b = -1;
+
+        for(int i = 2; i <= n; i++) {
+            if(find(i) != r1) {
+                b = i;
+                break;
+            }
         }
+
+        sb.append(a).append(" ").append(b);
     }
 }

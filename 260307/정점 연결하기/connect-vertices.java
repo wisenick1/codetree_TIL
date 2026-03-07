@@ -54,7 +54,7 @@ public class Main {
 
     private static void connect() {
         for(int i = 1; i <= n; i++) {
-            set.add(find(parent[i]));
+            set.add(find(i));
         }
     }
 }

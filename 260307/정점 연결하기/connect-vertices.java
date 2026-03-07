@@ -38,7 +38,11 @@ public class Main {
         int y = find(b);
 
         if(x == y) return;
-        parent[y] = x;
+        if(x < y) {
+            parent[y] = x;
+        } else {
+            parent[x] = y;
+        }
     }
 
     private static int find(int x) {

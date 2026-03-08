@@ -13,7 +13,7 @@ public class Main {
 
         @Override
         public int compareTo(Node node) {
-            return Integer.compare(this.index, node.dist);
+            return Integer.compare(this.index, node.index);
         }
     }
 

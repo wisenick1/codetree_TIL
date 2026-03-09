@@ -26,7 +26,6 @@ public class Main {
     }
 
     static int n, m;
-    static int[] dist;
     static List<Edge>[] graph;
     static PriorityQueue<Element> pq;
     static int result;
@@ -54,11 +53,6 @@ public class Main {
     }
 
     private static void init() {
-        dist = new int[n + 1];
-        for(int i = 1; i <= n; i++) {
-            dist[i] = (int)1e9;
-        }
-
         pq = new PriorityQueue<>();
         graph = new ArrayList[n + 1];
         for(int i = 0; i <= n; i++) {
@@ -69,27 +63,29 @@ public class Main {
     }
 
     private static void prim() {
-        dist[1] = 0;
+        boolean[] visited = new boolean[n + 1];
         pq.add(new Element(1, 0));
+
+        int count = 0;
 
         while(!pq.isEmpty()) {
             Element e = pq.poll();
             int minIndex = e.index;
             int minDist = e.dist;
 
-            if(minDist > dist[minIndex]) continue;
+            if(visited[minIndex]) continue;
 
+            visited[minIndex] = true;
             result += minDist;
+            count++;
 
             for(Edge edge : graph[minIndex]) {
-                int targetIndex = edge.index;
-                int targetDist = edge.dist;
-
-                if(targetDist < dist[targetIndex]) {
-                    dist[targetIndex] = targetDist;
-                    pq.add(new Element(targetIndex, targetDist));
+                if(!visited[edge.index]) {
+                    pq.add(new Element(edge.index, edge.dist));
                 }
             }
+
+            if (count == n) break;
         }
     }
 

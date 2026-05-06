@@ -5,6 +5,7 @@ public class Main {
     static int N, H, M;
     static int[][] map;
     static int[][] resultMap;
+    static Deque<int[]> deque = new ArrayDeque<>();
     static boolean[][] visited;
     static int[] dr = {0, 0, -1, 1};
     static int[] dc = {1, -1, 0, 0};
@@ -17,26 +18,26 @@ public class Main {
 
         map = new int[N][N];
         resultMap = new int[N][N];
+        visited = new boolean[N][N];
 
         for(int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for(int j = 0; j < N; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
+                if(map[i][j] == 3) {
+                    visited[i][j] = true;
+                    deque.add(new int[]{i, j, 0});
+                }
             }
         }
 
+        bfs();
+
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++) {
-                if(map[i][j] == 2) {
-                    visited = new boolean[N][N];
-                    int result = bfs(i, j);
-                    if(result == 0) {
-                        resultMap[i][j] = -1;
-                    } else {
-                        resultMap[i][j] = result;
-                    }
+                if(map[i][j] == 2 && !visited[i][j]) {
+                    resultMap[i][j] = -1;
                 }
-                else resultMap[i][j] = 0;
             }
         }
 
@@ -49,11 +50,7 @@ public class Main {
 
     }
 
-    private static int bfs(int r, int c) {
-        Deque<int[]> deque = new ArrayDeque<>();
-        deque.add(new int[]{r, c, 0});
-        visited[r][c] = true;
-
+    private static void bfs() {
         while(!deque.isEmpty()) {
             int[] poll = deque.poll();
             int curR = poll[0];
@@ -69,12 +66,10 @@ public class Main {
 
                 deque.add(new int[]{nr, nc, curDist + 1});
                 visited[nr][nc] = true;
-                if(map[nr][nc] == 3) {
-                    return curDist + 1;
+                if(map[nr][nc] == 2) {
+                    resultMap[nr][nc] = curDist + 1;
                 }
             }
         }
-
-        return 0;
     }
 }

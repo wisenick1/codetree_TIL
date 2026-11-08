@@ -6,6 +6,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         Map<Integer, Integer> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
 
         int n = Integer.parseInt(st.nextToken());
 
@@ -27,12 +28,14 @@ public class Main {
             if(com.equals("find")) {
                 int key = Integer.parseInt(st.nextToken());
                 if(map.containsKey(key)) {
-                    System.out.println(map.get(key));
+                    sb.append(map.get(key)).append('\n');
                 } else {
-                    System.out.println("None");
+                    sb.append("None").append('\n');
                 }
             }
         }
+
+        System.out.println(sb);
 
     }
 }
